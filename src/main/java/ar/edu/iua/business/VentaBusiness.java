@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,4 +75,43 @@ public class VentaBusiness implements IVentaBusiness {
 
     }
 
+	@Override
+	public List<Venta> findByProductoListPrecioLista(Double precio) throws BusinessException, NotFoundException {
+		try {
+			return ventaDAO.findByProductoListPrecioLista(precio);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
+	public List<Venta> findByFecha(String fecha) throws BusinessException, NotFoundException {
+		try {
+			fecha += "T00:00:00.000+00:00";
+			Date date=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(fecha);
+			log.info(date.toString());
+			return ventaDAO.findByFecha(date);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
+	public List<Venta> loadByFechaMayorOMenor(String fecha, String modo) throws BusinessException, NotFoundException {
+		try {
+			fecha += "T00:00:00.000+00:00";
+			Date date=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(fecha);
+			log.info(date.toString());
+			if(modo.equals("mayor")){
+				return ventaDAO.findByFechaGreaterThanEqual(date);
+			}else if(modo.equals("menor")){
+				return ventaDAO.findByFechaLessThanEqual(date);
+			} else return null;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new BusinessException(e);
+		}
+	}
 }

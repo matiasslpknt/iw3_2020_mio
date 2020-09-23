@@ -47,12 +47,12 @@ public class Producto implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "ingrediente_id", referencedColumnName = "id"))
     private List<Ingrediente> ingredienteList;
 
-//    @ManyToMany(targetEntity = Venta.class, mappedBy = "productoList")
-//    @JsonBackReference
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "producto_venta_detalle",
-            joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "venta_id", referencedColumnName = "id"))
+    @ManyToMany(targetEntity = Venta.class, mappedBy = "productoList")
+    @JsonBackReference
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinTable(name = "producto_venta_detalle",
+//            joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "venta_id", referencedColumnName = "id"))
     private List<Venta> ventaList;
 
 

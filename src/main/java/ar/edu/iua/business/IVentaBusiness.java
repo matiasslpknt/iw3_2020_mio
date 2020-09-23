@@ -7,6 +7,7 @@ import ar.edu.iua.model.Venta;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IVentaBusiness {
@@ -23,4 +24,9 @@ public interface IVentaBusiness {
 
     public Page<Venta> findAllPage(Pageable pageable);
 
+	public List<Venta>  findByProductoListPrecioLista(Double precio) throws BusinessException, NotFoundException;
+
+	public List<Venta>  findByFecha(String fecha) throws BusinessException, NotFoundException;
+
+	public List<Venta> loadByFechaMayorOMenor(String fecha, String modo) throws BusinessException, NotFoundException;
 }

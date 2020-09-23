@@ -3,6 +3,7 @@ package ar.edu.iua.rest;
 import ar.edu.iua.business.IVentaBusiness;
 import ar.edu.iua.business.exception.BusinessException;
 import ar.edu.iua.business.exception.NotFoundException;
+import ar.edu.iua.model.Producto;
 import ar.edu.iua.model.Venta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -89,4 +91,37 @@ public class VentaRestController extends BaseRestController {
     public Page<Venta> loadByPage(Pageable pageable) {
             return ventaBusiness.findAllPage(pageable);
     }
+
+	@GetMapping(value = "/precios")
+	public ResponseEntity<List<Venta>> loadByIngredienteListDescripcionContains(@RequestParam("precio") Double precio) {
+		try {
+			return new ResponseEntity<List<Venta>>(ventaBusiness.findByProductoListPrecioLista(precio), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<List<Venta>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<List<Venta>>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping(value = "/fechas")
+	public ResponseEntity<List<Venta>> loadByFecha(@RequestParam("fecha") String fecha) {
+		try {
+			return new ResponseEntity<List<Venta>>(ventaBusiness.findByFecha(fecha), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<List<Venta>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<List<Venta>>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping(value = "/fechas_modo")
+	public ResponseEntity<List<Venta>> loadByFechaMayorOMenor(@RequestParam("fecha") String fecha, @RequestParam("modo") String modo) {
+		try {
+			return new ResponseEntity<List<Venta>>(ventaBusiness.loadByFechaMayorOMenor(fecha, modo), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<List<Venta>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<List<Venta>>(HttpStatus.NOT_FOUND);
+		}
+	}
 }

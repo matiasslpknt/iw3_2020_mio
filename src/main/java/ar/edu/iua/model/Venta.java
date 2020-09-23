@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,12 +22,12 @@ public class Venta implements Serializable {
     private Long id;
 
 
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinTable(name = "producto_venta_detalle",
-//            joinColumns = @JoinColumn(name = "venta_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "id"))
-    @ManyToMany(targetEntity = Producto.class, mappedBy = "ventaList")
-    @JsonBackReference
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "producto_venta_detalle",
+            joinColumns = @JoinColumn(name = "venta_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "id"))
+//    @ManyToMany(targetEntity = Producto.class, mappedBy = "ventaList")
+//    @JsonBackReference
     private List<Producto> productoList;
 
     private Date fecha;
