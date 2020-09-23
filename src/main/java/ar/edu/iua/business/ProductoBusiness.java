@@ -22,7 +22,6 @@ public class ProductoBusiness implements IProductoBusiness {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-
 	@Autowired
 	private ProductoRepository productoDAO;
 

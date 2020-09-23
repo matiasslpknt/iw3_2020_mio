@@ -25,93 +25,108 @@ public class VentaBusiness implements IVentaBusiness {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
 
-	@Autowired
-	private VentaRepository ventaDAO;
+    @Autowired
+    private VentaRepository ventaDAO;
 
-	@Override
-	public Venta load(Long id) throws BusinessException, NotFoundException {
-		Optional<Venta> op;
-		try {
-			op = ventaDAO.findById(id);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-		if (!op.isPresent())
-			throw new NotFoundException("No se encuentra la venta id = " + id);
-		return op.get();
-	}
+    @Override
+    public Venta load(Long id) throws BusinessException, NotFoundException {
+        Optional<Venta> op;
+        try {
+            op = ventaDAO.findById(id);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+        if (!op.isPresent())
+            throw new NotFoundException("No se encuentra la venta id = " + id);
+        return op.get();
+    }
 
-	@Override
-	public List<Venta> list() throws BusinessException {
-		try {
-			return ventaDAO.findAll();
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
+    @Override
+    public List<Venta> list() throws BusinessException {
+        try {
+            return ventaDAO.findAll();
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 
-	@Override
-	public Venta save(Venta producto) throws BusinessException {
-		try {
-			return ventaDAO.save(producto);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
+    @Override
+    public Venta save(Venta producto) throws BusinessException {
+        try {
+            return ventaDAO.save(producto);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 
-	@Override
-	public void delete(Long id) throws BusinessException,NotFoundException {
-		try {
-			ventaDAO.deleteById(id);
-		} catch (EmptyResultDataAccessException e1) {
-			throw new NotFoundException("No se encuentra la venta id = " + id);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
+    @Override
+    public void delete(Long id) throws BusinessException, NotFoundException {
+        try {
+            ventaDAO.deleteById(id);
+        } catch (EmptyResultDataAccessException e1) {
+            throw new NotFoundException("No se encuentra la venta id = " + id);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 
     public Page<Venta> findAllPage(Pageable pageable) {
-            return ventaDAO.findAll(pageable);
+        return ventaDAO.findAll(pageable);
 
     }
 
-	@Override
-	public List<Venta> findByProductoListPrecioLista(Double precio) throws BusinessException, NotFoundException {
-		try {
-			return ventaDAO.findByProductoListPrecioLista(precio);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			throw new BusinessException(e);
+    @Override
+    public List<Venta> findByProductoListPrecioLista(Double precio) throws BusinessException, NotFoundException {
+		List<Venta> ventas = null;
+    	try {
+            ventas = ventaDAO.findByProductoListPrecioLista(precio);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new BusinessException(e);
+        }
+		if (ventas.isEmpty()) {
+			throw new NotFoundException("No se encontraron productos con los parametros especificados.");
 		}
-	}
+		return ventas;
+    }
 
-	@Override
-	public List<Venta> findByFecha(String fecha) throws BusinessException, NotFoundException {
-		try {
-			fecha += "T00:00:00.000+00:00";
-			Date date=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(fecha);
-			log.info(date.toString());
-			return ventaDAO.findByFecha(date);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			throw new BusinessException(e);
+    @Override
+    public List<Venta> findByFecha(String fecha) throws BusinessException, NotFoundException {
+		List<Venta> ventas = null;
+    	try {
+            fecha += "T00:00:00.000+00:00";
+            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(fecha);
+            log.info(date.toString());
+            ventas = ventaDAO.findByFecha(date);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new BusinessException(e);
+        }
+		if (ventas.isEmpty()) {
+			throw new NotFoundException("No se encontraron productos con los parametros especificados.");
 		}
-	}
+		return ventas;
+    }
 
-	@Override
-	public List<Venta> loadByFechaMayorOMenor(String fecha, String modo) throws BusinessException, NotFoundException {
-		try {
-			fecha += "T00:00:00.000+00:00";
-			Date date=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(fecha);
-			log.info(date.toString());
-			if(modo.equals("mayor")){
-				return ventaDAO.findByFechaGreaterThanEqual(date);
-			}else if(modo.equals("menor")){
-				return ventaDAO.findByFechaLessThanEqual(date);
-			} else return null;
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			throw new BusinessException(e);
+    @Override
+    public List<Venta> loadByFechaMayorOMenor(String fecha, String modo) throws BusinessException, NotFoundException {
+        List<Venta> ventas = null;
+        try {
+            fecha += "T00:00:00.000+00:00";
+            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(fecha);
+            log.info(date.toString());
+            if (modo.equals("mayor")) {
+                ventas = ventaDAO.findByFechaGreaterThanEqual(date);
+            } else if (modo.equals("menor")) {
+                ventas = ventaDAO.findByFechaLessThanEqual(date);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new BusinessException(e);
+        }
+		if (ventas.isEmpty()) {
+			throw new NotFoundException("No se encontraron productos con los parametros especificados.");
 		}
-	}
+        return ventas;
+    }
 }
