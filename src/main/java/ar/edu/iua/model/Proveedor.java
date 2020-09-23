@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name="proveedor")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 //@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Proveedor implements Serializable {
 

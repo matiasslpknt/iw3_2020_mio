@@ -48,7 +48,6 @@ public class IngredienteBusiness implements IIngredienteBusiness {
         } catch (Exception e) {
             throw new BusinessException(e);
         }
-
     }
 
 }
