@@ -42,12 +42,26 @@ public class IngredienteBusiness implements IIngredienteBusiness {
 
 
     @Override
-    public List<Ingrediente>  findByProductoListPrecioLista(double precio) throws BusinessException {
+    public List<Ingrediente> findByProductoListPrecioLista(double precio) throws BusinessException {
         try {
             return ingredienteDAO.findByProductoListPrecioLista(precio);
         } catch (Exception e) {
             throw new BusinessException(e);
         }
+    }
+
+    @Override
+    public List<Ingrediente> getIngredientesConPrecioProductoMayorA(Double precio) throws BusinessException, NotFoundException{
+        List<Ingrediente> ingredientes = null;
+        try {
+             ingredientes = ingredienteDAO.getIngredientesConPrecioProductoMayorA(precio);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+        if(ingredientes.size() == 0){
+            throw new NotFoundException("No se encontraron ingredientes con productos cuyo precio es mayor a: " + precio);
+        }
+        return ingredientes;
     }
 
 }

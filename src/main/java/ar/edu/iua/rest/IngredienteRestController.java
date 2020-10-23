@@ -48,5 +48,16 @@ public class IngredienteRestController {
             return new ResponseEntity<List<Ingrediente>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(value = "/ingrediente_precio_producto")
+    public ResponseEntity<List<Ingrediente>> getIngredientesConPrecioProductoMayorA(@RequestParam("precio") double precio) {
+        try {
+            return new ResponseEntity<List<Ingrediente>>(ingredienteBusiness.getIngredientesConPrecioProductoMayorA(precio), HttpStatus.OK);
+        } catch (BusinessException e) {
+            return new ResponseEntity<List<Ingrediente>>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e){
+            return new ResponseEntity<List<Ingrediente>>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
 

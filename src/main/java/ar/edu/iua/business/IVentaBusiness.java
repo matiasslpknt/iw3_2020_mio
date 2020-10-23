@@ -4,6 +4,7 @@ import ar.edu.iua.business.exception.BusinessException;
 import ar.edu.iua.business.exception.NotFoundException;
 import ar.edu.iua.model.Producto;
 import ar.edu.iua.model.Venta;
+import ar.edu.iua.model.VentaFechaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -29,4 +30,6 @@ public interface IVentaBusiness {
 	public List<Venta>  findByFecha(String fecha) throws BusinessException, NotFoundException;
 
 	public List<Venta> loadByFechaMayorOMenor(String fecha, String modo) throws BusinessException, NotFoundException;
+
+	public List<VentaFechaDTO> getFechaVentasConProductoNombre(String nombre) throws BusinessException, NotFoundException;
 }

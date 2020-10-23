@@ -2,8 +2,10 @@ package ar.edu.iua.business;
 
 import ar.edu.iua.business.exception.BusinessException;
 import ar.edu.iua.business.exception.NotFoundException;
+import ar.edu.iua.model.Ingrediente;
 import ar.edu.iua.model.Producto;
 import ar.edu.iua.model.Venta;
+import ar.edu.iua.model.VentaFechaDTO;
 import ar.edu.iua.model.persistence.ProductoRepository;
 import ar.edu.iua.model.persistence.VentaRepository;
 import org.slf4j.Logger;
@@ -77,23 +79,23 @@ public class VentaBusiness implements IVentaBusiness {
 
     @Override
     public List<Venta> findByProductoListPrecioLista(Double precio) throws BusinessException, NotFoundException {
-		List<Venta> ventas = null;
-    	try {
+        List<Venta> ventas = null;
+        try {
             ventas = ventaDAO.findByProductoListPrecioLista(precio);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new BusinessException(e);
         }
-		if (ventas.isEmpty()) {
-			throw new NotFoundException("No se encontraron productos con los parametros especificados.");
-		}
-		return ventas;
+        if (ventas.isEmpty()) {
+            throw new NotFoundException("No se encontraron productos con los parametros especificados.");
+        }
+        return ventas;
     }
 
     @Override
     public List<Venta> findByFecha(String fecha) throws BusinessException, NotFoundException {
-		List<Venta> ventas = null;
-    	try {
+        List<Venta> ventas = null;
+        try {
             fecha += "T00:00:00.000+00:00";
             Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(fecha);
             log.info(date.toString());
@@ -102,10 +104,10 @@ public class VentaBusiness implements IVentaBusiness {
             log.error(e.getMessage(), e);
             throw new BusinessException(e);
         }
-		if (ventas.isEmpty()) {
-			throw new NotFoundException("No se encontraron productos con los parametros especificados.");
-		}
-		return ventas;
+        if (ventas.isEmpty()) {
+            throw new NotFoundException("No se encontraron productos con los parametros especificados.");
+        }
+        return ventas;
     }
 
     @Override
@@ -124,9 +126,24 @@ public class VentaBusiness implements IVentaBusiness {
             log.error(e.getMessage(), e);
             throw new BusinessException(e);
         }
-		if (ventas.isEmpty()) {
-			throw new NotFoundException("No se encontraron productos con los parametros especificados.");
-		}
+        if (ventas.isEmpty()) {
+            throw new NotFoundException("No se encontraron productos con los parametros especificados.");
+        }
+        return ventas;
+    }
+
+    @Override
+    public List<VentaFechaDTO> getFechaVentasConProductoNombre(String nombre) throws BusinessException, NotFoundException {
+        List<VentaFechaDTO> ventas = null;
+        try {
+            ventas = ventaDAO.getFechaVentasConProductoNombre(nombre);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new BusinessException(e);
+        }
+        if (ventas.isEmpty()) {
+            throw new NotFoundException("No se encontraron ventas con productos cuyo nombre sea igual a: " + nombre);
+        }
         return ventas;
     }
 }

@@ -15,5 +15,6 @@ public interface IIngredienteBusiness {
 
     public List<Ingrediente> findByProductoListPrecioLista(double precioLista) throws BusinessException;
 
+    public List<Ingrediente> getIngredientesConPrecioProductoMayorA(Double precio) throws BusinessException, NotFoundException;
 
 }

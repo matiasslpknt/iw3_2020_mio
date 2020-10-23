@@ -13,6 +13,23 @@ import java.util.List;
 
 @Entity
 @Table(name="ventas")
+@NamedNativeQuery(name = "Venta.getFechaVentasConProductoNombre", query = "" +
+        "SELECT ventas.fecha " +
+        "FROM ventas " +
+        "         INNER JOIN producto_venta_detalle ON ventas.id = producto_venta_detalle.venta_id " +
+        "         INNER JOIN productos ON producto_venta_detalle.producto_id = productos.id " +
+        "WHERE productos.nombre = ?1", resultSetMapping = "ventamap")
+@SqlResultSetMapping(
+        name="ventamap",
+        classes = {
+                @ConstructorResult(
+                        columns = {
+                                @ColumnResult(name = "ventas.fecha", type = Date.class),
+                        },
+                        targetClass = VentaFechaDTO.class
+                )
+        }
+)
 public class Venta implements Serializable {
 
     private static final long serialVersionUID = 8608301282343428793L;

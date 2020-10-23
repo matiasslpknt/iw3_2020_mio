@@ -3,8 +3,10 @@ package ar.edu.iua.rest;
 import ar.edu.iua.business.IVentaBusiness;
 import ar.edu.iua.business.exception.BusinessException;
 import ar.edu.iua.business.exception.NotFoundException;
+import ar.edu.iua.model.Ingrediente;
 import ar.edu.iua.model.Producto;
 import ar.edu.iua.model.Venta;
+import ar.edu.iua.model.VentaFechaDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +124,17 @@ public class VentaRestController extends BaseRestController {
 			return new ResponseEntity<List<Venta>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (NotFoundException e) {
 			return new ResponseEntity<List<Venta>>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping(value = "/fecha_venta_nombre_producto")
+	public ResponseEntity<List<VentaFechaDTO>> getFechaVentasConProductoNombre(@RequestParam("nombre") String nombre) {
+		try {
+			return new ResponseEntity<List<VentaFechaDTO>>(ventaBusiness.getFechaVentasConProductoNombre(nombre), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<List<VentaFechaDTO>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (NotFoundException e){
+			return new ResponseEntity<List<VentaFechaDTO>>(HttpStatus.NOT_FOUND);
 		}
 	}
 }
