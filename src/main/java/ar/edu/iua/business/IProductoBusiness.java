@@ -29,4 +29,5 @@ public interface IProductoBusiness {
 
     public Page<Producto> findAllPage(Pageable pageable);
 
+    public Producto actualizarStockPorIdOrDescripcion(boolean stock, long id, String descripcion) throws BusinessException, NotFoundException;
 }
