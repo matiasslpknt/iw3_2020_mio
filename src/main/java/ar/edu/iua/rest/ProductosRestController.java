@@ -1,5 +1,6 @@
 package ar.edu.iua.rest;
 
+import ar.edu.iua.model.ProductoDTO;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -146,6 +147,20 @@ public class ProductosRestController extends BaseRestController {
             return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (NotFoundException e) {
             log.error(e.getMessage(), e);
+            return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(value = "actualizar_precio", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Producto> actualizarProductoConDTO(@RequestBody ProductoDTO productoDTO) {
+        Producto p = null;
+        try {
+            p = productoBusiness.actualizarProductoConDTO(productoDTO);
+            return new ResponseEntity<Producto>(p, HttpStatus.OK);
+        } catch (BusinessException e) {
+            log.error(e.getMessage(), e);
+            return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e){
             return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
         }
     }

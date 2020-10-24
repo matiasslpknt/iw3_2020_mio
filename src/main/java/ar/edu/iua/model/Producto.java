@@ -11,7 +11,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "productos")
-//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 @SqlResultSetMapping(
         name="productomap",
         classes = {

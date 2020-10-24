@@ -1,5 +1,6 @@
 package ar.edu.iua.business;
 
+import ar.edu.iua.model.ProductoDTO;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
@@ -30,4 +31,6 @@ public interface IProductoBusiness {
     public Page<Producto> findAllPage(Pageable pageable);
 
     public Producto actualizarStockPorIdOrDescripcion(boolean stock, long id, String descripcion) throws BusinessException, NotFoundException;
+
+    public Producto actualizarProductoConDTO(ProductoDTO producto) throws BusinessException, NotFoundException;
 }

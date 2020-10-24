@@ -31,20 +31,24 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2 AND p.descripcion = ?3" , nativeQuery = true)
+    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2 AND p.descripcion = ?3", nativeQuery = true)
     void actualizarStockPorIdANDDescripcion(boolean enStock, long id, String descripcion);
+
     @Modifying
     @Transactional
-    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2" , nativeQuery = true)
+    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2", nativeQuery = true)
     void actualizarStockPorId(boolean enStock, long id);
+
     @Modifying
     @Transactional
-    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.descripcion = ?2" , nativeQuery = true)
+    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.descripcion = ?2", nativeQuery = true)
     void actualizarStockPorDescripcion(boolean enStock, String descripcion);
 
-    public Producto findByEnStockAndIdAndDescripcion(boolean enStock, long id, String descripcion);
+    Producto findByEnStockAndIdAndDescripcion(boolean enStock, long id, String descripcion);
 
-    public Producto findByEnStockAndId(boolean enStock, long id);
+    Producto findByEnStockAndId(boolean enStock, long id);
 
-    public Producto findByEnStockAndDescripcion(boolean enStock, String descripcion);
+    Producto findByEnStockAndDescripcion(boolean enStock, String descripcion);
+
+    Optional<Producto> findByNombreAndDescripcion(String nombre, String Descripcion);
 }

@@ -1,6 +1,8 @@
 package ar.edu.iua.business;
 
+import ar.edu.iua.model.ProductoDTO;
 import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,50 +24,50 @@ public class ProductoBusiness implements IProductoBusiness {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private ProductoRepository productoDAO;
+    @Autowired
+    private ProductoRepository productoDAO;
 
-	@Override
-	public Producto load(Long id) throws BusinessException, NotFoundException {
-		Optional<Producto> op;
-		try {
-			op = productoDAO.findById(id);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-		if (!op.isPresent())
-			throw new NotFoundException("No se encuentra el producto id=" + id);
-		return op.get();
-	}
+    @Override
+    public Producto load(Long id) throws BusinessException, NotFoundException {
+        Optional<Producto> op;
+        try {
+            op = productoDAO.findById(id);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+        if (!op.isPresent())
+            throw new NotFoundException("No se encuentra el producto id=" + id);
+        return op.get();
+    }
 
-	@Override
-	public List<Producto> list() throws BusinessException {
-		try {
-			return productoDAO.findAll();
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
+    @Override
+    public List<Producto> list() throws BusinessException {
+        try {
+            return productoDAO.findAll();
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 
-	@Override
-	public Producto save(Producto producto) throws BusinessException {
-		try {
-			return productoDAO.save(producto);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
+    @Override
+    public Producto save(Producto producto) throws BusinessException {
+        try {
+            return productoDAO.save(producto);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 
-	@Override
-	public void delete(Long id) throws BusinessException,NotFoundException {
-		try {
-			productoDAO.deleteById(id);
-		} catch (EmptyResultDataAccessException e1) {
-			throw new NotFoundException("No se encuentra el producto id=" + id);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
+    @Override
+    public void delete(Long id) throws BusinessException, NotFoundException {
+        try {
+            productoDAO.deleteById(id);
+        } catch (EmptyResultDataAccessException e1) {
+            throw new NotFoundException("No se encuentra el producto id=" + id);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 
 
     @Override
@@ -99,7 +101,7 @@ public class ProductoBusiness implements IProductoBusiness {
     }
 
     @Override
-    public List<Producto>  findByIngredienteListDescripcionContains(String descripcion) throws BusinessException, NotFoundException {
+    public List<Producto> findByIngredienteListDescripcionContains(String descripcion) throws BusinessException, NotFoundException {
         try {
             return productoDAO.findByIngredienteListDescripcionIngredienteContains(descripcion);
         } catch (Exception e) {
@@ -110,33 +112,53 @@ public class ProductoBusiness implements IProductoBusiness {
     }
 
     public Page<Producto> findAllPage(Pageable pageable) {
-            return productoDAO.findAll(pageable);
+        return productoDAO.findAll(pageable);
 
     }
 
     @Override
-    public Producto actualizarStockPorIdOrDescripcion(boolean stock, long id, String descripcion) throws BusinessException, NotFoundException{
+    public Producto actualizarStockPorIdOrDescripcion(boolean stock, long id, String descripcion) throws BusinessException, NotFoundException {
         Optional<Producto> p = null;
-	    try{
-	        if(id == -1 && descripcion.equals("-1")){
+        try {
+            if (id == -1 && descripcion.equals("-1")) {
                 throw new BusinessException();
-            } else if(id != -1 && !descripcion.equals("-1")){
+            } else if (id != -1 && !descripcion.equals("-1")) {
                 productoDAO.actualizarStockPorIdANDDescripcion(stock, id, descripcion);
                 p = productoDAO.findById(id);
-            } else if(id != -1 && descripcion.equals("-1")){
+            } else if (id != -1 && descripcion.equals("-1")) {
                 productoDAO.actualizarStockPorId(stock, id);
                 p = productoDAO.findById(id);
-            } else if(id == -1 && !descripcion.equals("-1")){
+            } else if (id == -1 && !descripcion.equals("-1")) {
                 productoDAO.actualizarStockPorDescripcion(stock, descripcion);
                 p = productoDAO.findByDescripcion(descripcion);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new BusinessException(e);
         }
-	    if(!p.isPresent()){
-	        throw new NotFoundException("No se encontro ningun producto cn el filtro especificado.");
+        if (!p.isPresent()) {
+            throw new NotFoundException("No se encontro ningun producto cn el filtro especificado.");
         }
-	    return p.get();
+        return p.get();
+    }
+
+    @Override
+    public Producto actualizarProductoConDTO(ProductoDTO productoDTO) throws BusinessException, NotFoundException {
+        Optional<Producto> producto = null;
+        System.out.println(productoDTO.getNombre() + " " + productoDTO.getDescripcion() + " " + productoDTO.getPrecioLista());
+        try {
+            producto = productoDAO.findByNombreAndDescripcion(productoDTO.getNombre(), productoDTO.getDescripcion());
+            if(producto.get().getPrecioLista() != productoDTO.getPrecioLista()){
+                producto.get().setPrecioLista(productoDTO.getPrecioLista());
+                productoDAO.save(producto.get());
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new BusinessException(e);
+        }
+        if (!producto.isPresent()) {
+            throw new NotFoundException("No se encontro ningun producto cn el filtro especificado.");
+        }
+        return producto.get();
     }
 }
