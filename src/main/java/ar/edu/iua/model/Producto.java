@@ -12,7 +12,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "productos")
 //@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
-
+@SqlResultSetMapping(
+        name="productomap",
+        classes = {
+                @ConstructorResult(
+                        columns = {
+                                @ColumnResult(name = "p.nombre", type = String.class),
+                                @ColumnResult(name = "p.descripcion", type = String.class),
+                                @ColumnResult(name = "p.precio_lista", type = double.class)
+                        },
+                        targetClass = ProductoDTO.class
+                )
+        }
+)
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 451621105748580924L;
