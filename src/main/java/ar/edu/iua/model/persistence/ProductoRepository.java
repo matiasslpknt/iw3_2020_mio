@@ -23,6 +23,8 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     Optional<Producto> findByPrecioListaAfter(double precio);
 
+    Optional<Producto> findById(long id);
+
     List<Producto> findByIngredienteListDescripcionIngredienteContains(String descripcionIngrediente);
 
     Page<Producto> findAll(Pageable pageable);
@@ -30,15 +32,15 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2 AND p.descripcion = ?3" , nativeQuery = true)
-    Producto actualizarStockPorIdANDDescripcion(boolean enStock, long id, String descripcion);
+    void actualizarStockPorIdANDDescripcion(boolean enStock, long id, String descripcion);
     @Modifying
     @Transactional
     @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2" , nativeQuery = true)
-    Producto actualizarStockPorId(boolean enStock, long id);
+    void actualizarStockPorId(boolean enStock, long id);
     @Modifying
     @Transactional
     @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.descripcion = ?2" , nativeQuery = true)
-    Producto actualizarStockPorDescripcion(boolean enStock, String descripcion);
+    void actualizarStockPorDescripcion(boolean enStock, String descripcion);
 
     public Producto findByEnStockAndIdAndDescripcion(boolean enStock, long id, String descripcion);
 
