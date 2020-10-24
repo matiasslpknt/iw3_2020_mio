@@ -116,27 +116,24 @@ public class ProductoBusiness implements IProductoBusiness {
 
     @Override
     public Producto actualizarStockPorIdOrDescripcion(boolean stock, long id, String descripcion) throws BusinessException, NotFoundException{
-        Optional<Producto> p = null;
+        Producto p = null;
 	    try{
 	        if(id == -1 && descripcion.equals("-1")){
                 throw new BusinessException();
             } else if(id != -1 && !descripcion.equals("-1")){
-                productoDAO.actualizarStockPorIdANDDescripcion(stock, id, descripcion);
-                p = productoDAO.findById(id);
+                p = productoDAO.actualizarStockPorIdANDDescripcion(stock, id, descripcion);
             } else if(id != -1 && descripcion.equals("-1")){
-                productoDAO.actualizarStockPorId(stock, id);
-                p = productoDAO.findById(id);
+                p = productoDAO.actualizarStockPorId(stock, id);
             } else if(id == -1 && !descripcion.equals("-1")){
-                productoDAO.actualizarStockPorDescripcion(stock, descripcion);
-                p = productoDAO.findById(id);
+                p = productoDAO.actualizarStockPorDescripcion(stock, descripcion);
             }
         }catch(Exception e){
             log.error(e.getMessage(), e);
             throw new BusinessException(e);
         }
-	    if(!p.isPresent()){
+	    if(p == null){
 	        throw new NotFoundException("No se encontro ningun producto cn el filtro especificado.");
         }
-	    return p.get();
+	    return p;
     }
 }

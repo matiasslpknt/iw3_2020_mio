@@ -2,12 +2,15 @@ package ar.edu.iua.model.persistence;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.iua.model.Producto;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,14 +27,18 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     Page<Producto> findAll(Pageable pageable);
 
-    @Query(value = "UPDATE productos SET en_stock = ?1 WHERE productos.id = ?2 AND productos.descripcion = ?3" , nativeQuery = true)
-    public void actualizarStockPorIdANDDescripcion(boolean enStock, long id, String descripcion);
-
-    @Query(value = "UPDATE productos SET en_stock = ?1 WHERE productos.id = ?2" , nativeQuery = true)
-    public void actualizarStockPorId(boolean enStock, long id);
-
-    @Query(value = "UPDATE productos SET en_stock = ?1 WHERE productos.descripcion = ?2" , nativeQuery = true)
-    public void actualizarStockPorDescripcion(boolean enStock, String descripcion);
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2 AND p.descripcion = ?3" , nativeQuery = true)
+    Producto actualizarStockPorIdANDDescripcion(boolean enStock, long id, String descripcion);
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.id = ?2" , nativeQuery = true)
+    Producto actualizarStockPorId(boolean enStock, long id);
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE productos p SET p.en_stock = ?1 WHERE p.descripcion = ?2" , nativeQuery = true)
+    Producto actualizarStockPorDescripcion(boolean enStock, String descripcion);
 
     public Producto findByEnStockAndIdAndDescripcion(boolean enStock, long id, String descripcion);
 
