@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import ar.edu.iua.business.exception.BusinessException;
@@ -85,19 +85,17 @@ public class ProductoBusiness implements IProductoBusiness {
     }
 
     @Override
-    public Producto findByPrecioListaAfter(double precioMayor) throws BusinessException, NotFoundException {
-        Optional<Producto> op = null;
+    public List<Producto> findByPrecioListaAfter(double precioMayor) throws BusinessException, NotFoundException {
+        Optional<List<Producto>> op = null;
         try {
             log.info("Getting by precio");
             op = productoDAO.findByPrecioListaAfter(precioMayor);
-            Producto p = op.get();
         } catch (Exception e) {
             throw new BusinessException(e);
         }
         if (!op.isPresent())
             throw new NotFoundException("No se encuentra el producto con precio mayor a " + precioMayor);
         return op.get();
-
     }
 
     @Override
@@ -114,6 +112,22 @@ public class ProductoBusiness implements IProductoBusiness {
     public Page<Producto> findAllPage(Pageable pageable) {
         return productoDAO.findAll(pageable);
 
+    }
+
+    @Override
+    public void updateStockById(Long id, boolean enStock) {
+        productoDAO.updateStockById(id, enStock);
+    }
+
+    @Override
+    public Long updatePrecioListaByNombre(ProductoDTO productoDTO) {
+
+
+        productoDAO.updatePrecioListaByNombre(productoDTO.getPrecioLista(), productoDTO.getNombre());
+        Optional<Producto> p = productoDAO.findByNombre(productoDTO.getNombre());
+
+
+        return p.get().getId();
     }
 
     @Override
@@ -160,5 +174,28 @@ public class ProductoBusiness implements IProductoBusiness {
             throw new NotFoundException("No se encontro ningun producto cn el filtro especificado.");
         }
         return producto.get();
+    }
+
+    @Override
+    public List<Producto> findByPrecioLista(String precio) throws BusinessException, NotFoundException, NumberFormatException{
+        Optional<List<Producto>> op = null;
+        double numero = -1;
+        try{
+            numero = Double.parseDouble(precio);
+        }catch (Exception e){
+            throw new NumberFormatException("El precio ingresado es un String.");
+        }
+        try {
+            if(numero >= 1000000){
+                throw new BusinessException();
+            }
+            log.info("Getting by precio");
+            op = productoDAO.findByPrecioLista(numero);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+        if (!op.isPresent())
+            throw new NotFoundException("No se encuentran productos con precio igual a: " + precio);
+        return op.get();
     }
 }

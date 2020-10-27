@@ -66,6 +66,14 @@ public class Producto implements Serializable {
 //            inverseJoinColumns = @JoinColumn(name = "venta_id", referencedColumnName = "id"))
     private List<Venta> ventaList;
 
+    public Producto(String nombre, String descripcion, double precioLista) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioLista = precioLista;
+    }
+
+    public Producto() {
+    }
 
     public Long getId() {
         return id;

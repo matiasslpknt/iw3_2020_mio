@@ -106,13 +106,13 @@ public class ProductosRestController extends BaseRestController {
 
     //curl -X GET  'http://localhost:8080/api/v1/productos/description?desc=arroz%20gallo%20de%20oro'
     @GetMapping(value = "/precio")
-    public ResponseEntity<Producto> loadByPrecioMayor(@RequestParam("price") double precioMayor) {
+    public ResponseEntity<List<Producto>> loadByPrecioMayor(@RequestParam("price") double precioMayor) {
         try {
-            return new ResponseEntity<Producto>(productoBusiness.findByPrecioListaAfter(precioMayor), HttpStatus.OK);
+            return new ResponseEntity<List<Producto>>(productoBusiness.findByPrecioListaAfter(precioMayor), HttpStatus.OK);
         } catch (BusinessException e) {
-            return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (NotFoundException e) {
-            return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -132,7 +132,39 @@ public class ProductosRestController extends BaseRestController {
     @GetMapping(value = "/productos_por_pagina")
     public Page<Producto> loadByPage(Pageable pageable) {
         return productoBusiness.findAllPage(pageable);
+    }
 
+    @PutMapping(value = { "/native" }, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Producto> updateStockById (@RequestParam("id") Long id, @RequestParam("enStock") boolean enStock) {
+
+
+        try {
+            productoBusiness.updateStockById(id, enStock);
+
+            return new ResponseEntity<Producto>(productoBusiness.load(id),HttpStatus.OK);
+        } catch (BusinessException e) {
+            log.error(e.getMessage(), e);
+            return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @PutMapping(value = { "/native2" }, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Producto> updatePrecioListaByNombre (@RequestBody ProductoDTO productoDTO) {
+
+
+        try {
+            long id = productoBusiness.updatePrecioListaByNombre(productoDTO);
+
+            return new ResponseEntity<Producto>(productoBusiness.load(id),HttpStatus.OK);
+        } catch (BusinessException e) {
+            log.error(e.getMessage(), e);
+            return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(value = "actualizar_stock", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -162,6 +194,19 @@ public class ProductosRestController extends BaseRestController {
             return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (NotFoundException e){
             return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(value = "/precio_igual")
+    public ResponseEntity<List<Producto>> loadByPrecio(@RequestParam("price") String precio) {
+        try {
+            return new ResponseEntity<List<Producto>>(productoBusiness.findByPrecioLista(precio), HttpStatus.OK);
+        } catch (BusinessException e) {
+            return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
+        } catch (NumberFormatException e) {
+            return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
         }
     }
 }

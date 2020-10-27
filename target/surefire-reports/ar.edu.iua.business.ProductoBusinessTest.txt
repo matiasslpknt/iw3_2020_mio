@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ar.edu.iua.business.ProductoBusinessTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.04 s - in ar.edu.iua.business.ProductoBusinessTest

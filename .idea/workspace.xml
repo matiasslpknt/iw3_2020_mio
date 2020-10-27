@@ -5,15 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6a886b0-8664-4cef-a5e9-fd9b702d9a96" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_vintage_junit_vintage_engine_5_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_all_1_9_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ar/edu/iua/business/ProductoBusinessTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_0_0_M5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_0_0_M2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iw3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/iw3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/iua/business/IProductoBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/iua/business/IProductoBusiness.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/iua/business/ProductoBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/iua/business/ProductoBusiness.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/iua/model/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/iua/model/Producto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/iua/model/persistence/ProductoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/iua/model/persistence/ProductoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/iua/rest/ProductosRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/iua/rest/ProductosRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/iua/BackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/iua/BackendApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/iua/business/IProductoBusiness.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/iua/business/IProductoBusiness.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/iua/business/ProductoBusiness.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/iua/business/ProductoBusiness.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/iua/model/Producto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/iua/model/Producto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/iua/model/persistence/ProductoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/iua/model/persistence/ProductoRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/iua/rest/ProductosRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/iua/rest/ProductosRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ar/edu/iua/BackendApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ar/edu/iua/BackendApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,28 +61,31 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jpa_original/iw3-2020" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ar.edu.iua.business" />
       <recent name="ar.edu.iua.model" />
       <recent name="ar.edu.iua.rest" />
-      <recent name="ar.edu.iua.business" />
       <recent name="ar.edu.iua.model.persistence" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -104,7 +123,11 @@
       <workItem from="1603379101208" duration="639000" />
       <workItem from="1603458952626" duration="17220000" />
       <workItem from="1603490651493" duration="4348000" />
-      <workItem from="1603495049155" duration="7948000" />
+      <workItem from="1603495049155" duration="8127000" />
+      <workItem from="1603733486186" duration="1416000" />
+      <workItem from="1603757950436" duration="119000" />
+      <workItem from="1603758107576" duration="3708000" />
+      <workItem from="1603804496226" duration="4890000" />
     </task>
     <servers />
   </component>
@@ -132,62 +155,66 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="743" y="389" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1600698795024" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1603504964695">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1603759459413">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603504964695" />
-    <state width="1293" height="282" key="GridCell.Tab.0.bottom" timestamp="1603508365041">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603759459413" />
+    <state width="1293" height="282" key="GridCell.Tab.0.bottom" timestamp="1603809352833">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1293" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365041" />
-    <state width="1293" height="282" key="GridCell.Tab.0.center" timestamp="1603508365041">
+    <state width="1293" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352833" />
+    <state width="1293" height="282" key="GridCell.Tab.0.center" timestamp="1603809352833">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1293" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365041" />
-    <state width="1293" height="282" key="GridCell.Tab.0.left" timestamp="1603508365041">
+    <state width="1293" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352833" />
+    <state width="1293" height="282" key="GridCell.Tab.0.left" timestamp="1603809352833">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1293" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365041" />
-    <state width="1293" height="282" key="GridCell.Tab.0.right" timestamp="1603508365041">
+    <state width="1293" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352833" />
+    <state width="1293" height="282" key="GridCell.Tab.0.right" timestamp="1603809352833">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1293" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365041" />
-    <state width="1877" height="284" key="GridCell.Tab.1.bottom" timestamp="1603508365033">
+    <state width="1293" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352833" />
+    <state width="1877" height="284" key="GridCell.Tab.1.bottom" timestamp="1603809352816">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365033" />
-    <state width="1877" height="284" key="GridCell.Tab.1.center" timestamp="1603508365032">
+    <state width="1877" height="284" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352816" />
+    <state width="1877" height="284" key="GridCell.Tab.1.center" timestamp="1603809352815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365032" />
-    <state width="1877" height="284" key="GridCell.Tab.1.left" timestamp="1603508365032">
+    <state width="1877" height="284" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352815" />
+    <state width="1877" height="284" key="GridCell.Tab.1.left" timestamp="1603809352815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365032" />
-    <state width="1877" height="284" key="GridCell.Tab.1.right" timestamp="1603508365032">
+    <state width="1877" height="284" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352815" />
+    <state width="1877" height="284" key="GridCell.Tab.1.right" timestamp="1603809352815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603508365032" />
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1603501738987">
+    <state width="1877" height="284" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603809352815" />
+    <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1603508565635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603501738987" />
-    <state width="1877" height="348" key="GridCell.Tab.2.center" timestamp="1603501738986">
+    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603508565635" />
+    <state width="1877" height="348" key="GridCell.Tab.2.center" timestamp="1603508565635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603501738986" />
-    <state width="1877" height="348" key="GridCell.Tab.2.left" timestamp="1603501738986">
+    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603508565635" />
+    <state width="1877" height="348" key="GridCell.Tab.2.left" timestamp="1603508565635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603501738986" />
-    <state width="1877" height="348" key="GridCell.Tab.2.right" timestamp="1603501738986">
+    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603508565635" />
+    <state width="1877" height="348" key="GridCell.Tab.2.right" timestamp="1603508565635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603501738986" />
+    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603508565635" />
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1603459971793">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1603459971793" />
+    <state x="637" y="300" key="Maven.ArtifactSearchDialog" timestamp="1603758224975">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="637" y="300" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758224975" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1600787909456">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -200,10 +227,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="859" y="461" key="com.intellij.database.run.ParametersPanel.Standalone/0.0.1920.1040@0.0.1920.1040" timestamp="1603468199367" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1603503438248">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1603805231049">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603503438248" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603805231049" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1600879977348">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
